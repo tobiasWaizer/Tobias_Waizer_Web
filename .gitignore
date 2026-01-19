@@ -1,0 +1,5 @@
+.idea/
+node_modules/
+.env
+/packages/backend/.env.development
+/packages/backend/.env.production

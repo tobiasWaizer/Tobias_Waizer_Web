@@ -1,0 +1,480 @@
+openapi: 3.1.0
+info:
+  title: Tienda Sol API
+  version: 1.0.0
+  description: API REST de Tienda Sol.
+servers:
+  - url: http://localhost:3000/api/v1
+tags:
+  - name: health
+  - name: usuarios
+  - name: productos
+  - name: pedidos
+  - name: notificaciones
+  - name: docs
+security:
+  - userIdAuth: []
+
+paths:
+  /docs:
+    get:
+      tags: [docs]
+      operationId: verDocumentacion
+      summary: Documentación interactiva (Swagger UI)
+      description: Devuelve la interfaz HTML de documentación de la API.
+      security: []
+      responses:
+        '200':
+          description: HTML de Swagger UI
+          content:
+            text/html:
+              schema:
+                type: string
+
+  /health:
+    get:
+      tags: [health]
+      operationId: health
+      security: []
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ok
+
+  /usuarios:
+    post:
+      tags: [usuarios]
+      operationId: crearUsuario
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UsuarioCreate' }
+      responses:
+        '201':
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Usuario' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /usuarios/{id}/pedidos:
+    get:
+      tags: [pedidos]
+      operationId: historialPedidosUsuario
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+        - name: estado
+          in: query
+          schema: { $ref: '#/components/schemas/EstadoPedido' }
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PedidoList' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /usuarios/{id}/productos:
+    get:
+      tags: [productos]
+      operationId: listarProductosDeVendedor
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+        - { name: nombre, in: query, schema: { type: string } }
+        - { name: descripcion, in: query, schema: { type: string } }
+        - { name: categorias, in: query, schema: { type: string } }
+        - { name: minPrice, in: query, schema: { type: integer, minimum: 0 } }
+        - { name: maxPrice, in: query, schema: { type: integer, minimum: 0 } }
+        - { name: orderBy, in: query, schema: { type: string, enum: [precio, ventas], default: ventas } }
+        - { name: order, in: query, schema: { type: string, enum: [asc, desc], default: desc } }
+        - $ref: '#/components/parameters/Page'
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 10 }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProductoList' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /usuarios/{id}/notificaciones:
+    get:
+      tags: [notificaciones]
+      operationId: listarNotificaciones
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+        - name: tipo
+          in: query
+          schema:
+            type: string
+            enum: [leidas, no_leidas, todas]
+            default: todas
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/NotificacionList' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /productos:
+    post:
+      tags: [productos]
+      operationId: crearProducto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProductoCreate' }
+      responses:
+        '201':
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Producto' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '403': { $ref: '#/components/responses/Error403' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /pedidos:
+    post:
+      tags: [pedidos]
+      operationId: crearPedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PedidoCreate' }
+      responses:
+        '201':
+          description: Creado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Pedido' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '409': { $ref: '#/components/responses/Error409' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /pedidos/{id}:
+    get:
+      tags: [pedidos]
+      operationId: consultarPedido
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Pedido' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '403': { $ref: '#/components/responses/Error403' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '422': { $ref: '#/components/responses/Error422' }
+    patch:
+      tags: [pedidos]
+      operationId: cambiarEstadoPedido
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/CambioEstado' }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Pedido' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '403': { $ref: '#/components/responses/Error403' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '409': { $ref: '#/components/responses/Error409' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+  /notificaciones/{id}:
+    patch:
+      tags: [notificaciones]
+      operationId: marcarNotificacionLeida
+      parameters:
+        - $ref: '#/components/parameters/IdPath'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Notificacion' }
+        '400': { $ref: '#/components/responses/Error400' }
+        '401': { $ref: '#/components/responses/Error401' }
+        '403': { $ref: '#/components/responses/Error403' }
+        '404': { $ref: '#/components/responses/Error404' }
+        '422': { $ref: '#/components/responses/Error422' }
+
+components:
+  securitySchemes:
+    userIdAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+
+  parameters:
+    IdPath:
+      name: id
+      in: path
+      required: true
+      schema: { type: integer, minimum: 1 }
+    Page:
+      name: page
+      in: query
+      schema: { type: integer, minimum: 1, default: 1 }
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 10 }
+
+  responses:
+    Error400:
+      description: Error de validación
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Error401:
+      description: No autenticado
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Error403:
+      description: Prohibido
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Error404:
+      description: No encontrado
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Error409:
+      description: Conflicto
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+    Error422:
+      description: Error de dominio
+      content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } }
+
+
+  schemas:
+    UsuarioCreate:
+      type: object
+      required: [nombre, email, telefono, tipo]
+      properties:
+        nombre: { type: string, minLength: 1 }
+        email: { type: string, format: email }
+        telefono: { type: integer, minimum: 1 }
+        tipo: { type: string, enum: [ADMIN, COMPRADOR, VENDEDOR] }
+    Usuario:
+      type: object
+      required: [id, nombre, email, telefono, tipo]
+      properties:
+        id: { type: integer }
+        nombre: { type: string }
+        email: { type: string, format: email }
+        telefono: { type: integer }
+        tipo: { type: string, enum: [ADMIN, COMPRADOR, VENDEDOR] }
+        fechaAlta: { type: string, format: date-time, nullable: true }
+
+    Moneda:
+      type: string
+      enum: [PESO_ARG, DOLAR_USA, REAL]
+    ProductoCreate:
+      type: object
+      required: [titulo, descripcion, categorias, precio, moneda, stock, fotos, activo]
+      properties:
+        titulo: { type: string, minLength: 1 }
+        descripcion: { type: string, minLength: 1 }
+        categorias:
+          type: array
+          minItems: 1
+          items: { type: string, minLength: 1 }
+        precio: { type: number, minimum: 0 }
+        moneda: { $ref: '#/components/schemas/Moneda' }
+        stock: { type: integer, minimum: 0 }
+        fotos:
+          type: array
+          minItems: 1
+          items: { type: string, format: uri }
+        activo: { type: boolean }
+    Producto:
+      type: object
+      required: [id, titulo, descripcion, categorias, precio, moneda, stock, fotos, activo, vendedorId]
+      properties:
+        id: { type: integer }
+        titulo: { type: string }
+        descripcion: { type: string }
+        categorias:
+          type: array
+          items: { type: string }
+        precio: { type: number }
+        moneda: { $ref: '#/components/schemas/Moneda' }
+        stock: { type: integer }
+        fotos:
+          type: array
+          items: { type: string, format: uri }
+        activo: { type: boolean }
+        vendedorId: { type: integer }
+        vendidos: { type: integer, nullable: true }
+        fechaAlta: { type: string, format: date-time, nullable: true }
+        fechaActualizacion: { type: string, format: date-time, nullable: true }
+    ProductoList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Producto' }
+        paginacion:
+          $ref: '#/components/schemas/PaginacionProductos'
+    PaginacionProductos:
+      type: object
+      properties:
+        page: { type: integer }
+        limit: { type: integer }
+        total: { type: integer }
+        totalPages: { type: integer }
+        orderBy: { type: string, enum: [precio, ventas] }
+        order: { type: string, enum: [asc, desc] }
+
+    EstadoPedido:
+      type: string
+      enum: [cancelado, entregado, enviado, enPreparacion, confirmado, pendiente]
+    ItemPedidoCreate:
+      type: object
+      required: [productoID, cantidad]
+      properties:
+        productoID: { type: integer, minimum: 1 }
+        cantidad: { type: integer, minimum: 1 }
+    ItemPedido:
+      type: object
+      required: [productoID, cantidad, precioUnitario, subtotal]
+      properties:
+        productoID: { type: integer }
+        cantidad: { type: integer }
+        precioUnitario: { type: number }
+        subtotal: { type: number }
+    DireccionEntrega:
+      type: object
+      required: [calle, altura, codigoPostal, ciudad, provincia, pais]
+      properties:
+        calle: { type: string }
+        altura: { type: integer }
+        piso: { type: string, nullable: true }
+        departamento: { type: string, nullable: true }
+        codigoPostal: { type: string }
+        ciudad: { type: string }
+        provincia: { type: string }
+        pais: { type: string }
+        lat: { type: number, nullable: true }
+        lon: { type: number, nullable: true }
+    PedidoCreate:
+      type: object
+      required: [items, moneda, direccionEntrega]
+      properties:
+        items:
+          type: array
+          minItems: 1
+          items: { $ref: '#/components/schemas/ItemPedidoCreate' }
+        moneda: { $ref: '#/components/schemas/Moneda' }
+        direccionEntrega: { $ref: '#/components/schemas/DireccionEntrega' }
+    CambioEstado:
+      type: object
+      required: [nuevoEstado, motivo]
+      properties:
+        nuevoEstado: { $ref: '#/components/schemas/EstadoPedido' }
+        motivo: { type: string, minLength: 1 }
+    Pedido:
+      type: object
+      required: [id, compradorId, vendedorId, estado, items, total, moneda, direccionEntrega]
+      properties:
+        id: { type: integer }
+        compradorId: { type: integer }
+        vendedorId: { type: integer }
+        estado: { $ref: '#/components/schemas/EstadoPedido' }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/ItemPedido' }
+        moneda: { $ref: '#/components/schemas/Moneda' }
+        direccionEntrega: { $ref: '#/components/schemas/DireccionEntrega' }
+        historialEstados:
+          type: array
+          items:
+            type: object
+            properties:
+              estado: { $ref: '#/components/schemas/EstadoPedido' }
+              fecha: { type: string, format: date-time }
+              motivo: { type: string, nullable: true }
+        total: { type: number }
+        fechaCreacion: { type: string, format: date-time, nullable: true }
+        fechaActualizacion: { type: string, format: date-time, nullable: true }
+        fechaCancelacion: { type: string, format: date-time, nullable: true }
+        fechaEnvio: { type: string, format: date-time, nullable: true }
+        fechaEntrega: { type: string, format: date-time, nullable: true }
+    PedidoList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Pedido' }
+        paginacion:
+          $ref: '#/components/schemas/PaginacionGenerica'
+    PaginacionGenerica:
+      type: object
+      properties:
+        page: { type: integer }
+        limit: { type: integer }
+        total: { type: integer }
+        totalPages: { type: integer }
+
+    Notificacion:
+      type: object
+      required: [id, usuarioDestinoId, mensaje, leida, fechaAlta]
+      properties:
+        id: { type: integer }
+        usuarioDestinoId: { type: integer }
+        mensaje: { type: string }
+        detalles:
+          type: object
+          additionalProperties: true
+          nullable: true
+        leida: { type: boolean }
+        fechaAlta: { type: string, format: date-time }
+        fechaLeida: { type: string, format: date-time, nullable: true }
+    NotificacionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Notificacion' }
+        paginacion:
+          $ref: '#/components/schemas/PaginacionGenerica'
+
+    Error:
+      type: object
+      properties:
+        error: { type: string }
+        detalles: { nullable: true }
