@@ -8,7 +8,7 @@ import "./carrouselProyectos.css";
 const proyectos = [
     {
         titulo: "E-comerce tienda sol",
-        imagen: "../../public/miPorfolioPortada.png",
+        imagen: "../../public/tiendaSolPortada.png",
         tecnologias: ["React.js", "Node.js", "MongoDB"],
         github: "https://github.com/tobiasWaizer/TP-DesarrolloDeSW",
         web: "https://proyecto1.com"
