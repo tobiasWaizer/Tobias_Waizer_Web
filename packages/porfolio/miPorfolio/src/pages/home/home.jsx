@@ -122,3 +122,4 @@ export default function Home() {
         </div>
     );
 }
+/*todo: lograr que el espacio donde se escriben y se desescriben se mantenga fijo*/

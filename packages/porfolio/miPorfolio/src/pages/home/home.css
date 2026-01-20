@@ -149,3 +149,8 @@
     min-width: 28px;
 }
 
+.typewriter-container {
+    min-width: 48ch; /* Ajusta el valor al largo de tu texto más largo */
+    display: inline-block;
+    white-space: nowrap;
+}
