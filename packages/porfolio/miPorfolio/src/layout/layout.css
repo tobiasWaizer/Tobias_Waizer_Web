@@ -1,0 +1,25 @@
+.layout-container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 240px; /* ajusta según tu diseño */
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    flex-shrink: 0;
+    background: #232526;
+    z-index: 10;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    height: 100vh;
+    background: #7a7777;
+    padding: 24px;
+    scroll-behavior: smooth;
+}

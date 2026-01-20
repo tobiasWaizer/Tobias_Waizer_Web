@@ -1,0 +1,151 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.home-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.home-description {
+    font-size: 1.2rem;
+    color: #000000;
+}
+
+/* ESTO ES SOLO PARA SOBRE MI*/
+
+.sobre-mi-titulo, .contacto-titulo {
+    color: #048eb9;
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.sobre-mi-subtitulo {
+    color: #048eb9;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.sobre-mi-section, .contacto-section {
+    padding:5rem 0 10rem 0;
+}
+
+.sobre-mi-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+    max-width: 700px;
+}
+
+.sobre-mi-texto {
+    flex: 1;
+    text-align: left;
+
+}
+
+.cv-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.cv-btn {
+    background: #1976d2;
+    color: #fff;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+
+.cv-btn:hover {
+    background: #ffffff;
+    transform: scale(1.05);
+}
+
+
+.sobre-mi-foto {
+    width: 180px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+}
+/* ESTO ES SOLO PARA EDUCACION*/
+.educacion-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.educacion-item {
+    background: #f5f7fa;
+    border-left: 5px solid #1976d2;
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: box-shadow 0.2s, transform 0.2s;
+    transform: scale(1);
+}
+
+.educacion-item:hover {
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+    transform: scale(1.03);
+    z-index: 1;
+}
+
+.educacion-item strong {
+    font-size: 1.2rem;
+    color: #1976d2;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.educacion-item span {
+    display: block;
+    color: #333;
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .educacion-item {
+        padding: 1rem;
+    }
+}
+/* ESTO ES SOLO PARA CONTACTO*/
+.contacto-redes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.contacto-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.contacto-link:hover {
+    color: #1976d2;
+}
+
+.contacto-icono {
+    min-width: 28px;
+}
+
