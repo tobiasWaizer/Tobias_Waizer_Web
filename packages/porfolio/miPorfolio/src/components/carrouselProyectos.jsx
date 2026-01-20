@@ -22,7 +22,7 @@ const proyectos = [
     },
     {
         titulo: "Metamapa",
-        imagen: "../../public/miPorfolioPortada.png",
+        imagen: "../../public/metamapaPortada.png",
         tecnologias: ["java", "PostgreSQL", "HTML", "CSS"],
         github: "https://github.com/tobiasWaizer/Tobias_Waizer_Web",
         web: "https://proyecto1.com"
