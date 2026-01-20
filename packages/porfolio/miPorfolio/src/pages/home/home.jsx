@@ -5,6 +5,8 @@ import { FaWhatsapp, FaInstagram, FaLinkedin } from "react-icons/fa";
 import MiFoto from "../../assets/miFoto.jpeg";
 import Typewriter from "../../components/typewriter";
 import CarrouselProyectos from "../../components/carrouselProyectos.jsx";
+import HabilidadButton from "../../components/HabilidadButton";
+
 
 const SobreMi = () => (
     <section id="sobre-mi" className="sobre-mi-section">
@@ -81,6 +83,45 @@ const Educacion = () => (
     </section>
 );
 
+
+const habilidades = {
+    lenguajes: ["JavaScript", "Java", "HTML", "CSS", "SQL"],
+    frameworks: ["React.js", "Node.js", "Express", "Spring Boot"],
+    herramientas: ["Git", "Figma", "Postman", "MongoDB", "VS Code"]
+};
+
+const Habilidades = () => (
+    <section id="habilidades" className="sobre-mi-section">
+        <h2 className="contacto-titulo">Habilidades</h2>
+        <div className="habilidades-contenedor">
+            <div>
+                <h3 className="sobre-mi-subtitulo">Lenguajes</h3>
+                <div className="habilidades-lista">
+                    {habilidades.lenguajes.map((item, idx) => (
+                        <HabilidadButton key={idx} nombre={item} />
+                    ))}
+                </div>
+            </div>
+            <div>
+                <h3 className="sobre-mi-subtitulo">Frameworks</h3>
+                <div className="habilidades-lista">
+                    {habilidades.frameworks.map((item, idx) => (
+                        <HabilidadButton key={idx} nombre={item} />
+                    ))}
+                </div>
+            </div>
+            <div>
+                <h3 className="sobre-mi-subtitulo">SW y Herramientas</h3>
+                <div className="habilidades-lista">
+                    {habilidades.herramientas.map((item, idx) => (
+                        <HabilidadButton key={idx} nombre={item} />
+                    ))}
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
             /*todo:ver que onda con el mail*/
 const Contacto = () => (
     <section id="contacto" className="contacto-section">
@@ -120,6 +161,7 @@ export default function Home() {
             <SobreMi/>
             <Proyectos/>
             <Educacion/>
+            <Habilidades/>
             <Contacto/>
         </div>
     );

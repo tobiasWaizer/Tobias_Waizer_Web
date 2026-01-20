@@ -4,25 +4,29 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carrouselProyectos.css";
+import tiendaSolPortada from "../assets/tiendaSolPortada.png";
+import miPorfolioPortada from "../assets/miPorfolioPortada.png";
+import metamapaPortada from "../assets/metamapaPortada.png";
+
 
 const proyectos = [
     {
         titulo: "E-comerce tienda sol",
-        imagen: "../../public/tiendaSolPortada.png",
+        imagen: tiendaSolPortada,
         tecnologias: ["React.js", "Node.js", "MongoDB"],
         github: "https://github.com/tobiasWaizer/TP-DesarrolloDeSW",
         web: "https://proyecto1.com"
     },
     {
         titulo: "Mi Porfolio",
-        imagen: "../../public/miPorfolioPortada.png",
+        imagen: miPorfolioPortada,
         tecnologias: ["React,js", "Node.js", "HTML", "CSS"],
         github: "https://github.com/tobiasWaizer/Tobias_Waizer_Web",
         web: "https://proyecto1.com"
     },
     {
         titulo: "Metamapa",
-        imagen: "../../public/metamapaPortada.png",
+        imagen: metamapaPortada,
         tecnologias: ["java", "PostgreSQL", "HTML", "CSS"],
         github: "https://github.com/tobiasWaizer/Tobias_Waizer_Web",
         web: "https://proyecto1.com"

@@ -1,6 +1,9 @@
 .home-container {
-    text-align: center;
-    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    margin-top: 10px;
+    padding-left: 25px;
 }
 
 .home-title {
@@ -158,12 +161,14 @@
     box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
     transition: box-shadow 0.2s, transform 0.2s;
     transform: scale(1);
+    position: relative; /* <-- Añade esto */
+    z-index: 1;
 }
 
 .educacion-item:hover {
     box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
     transform: scale(1.03);
-    z-index: 1;
+    z-index: 10;        /* <-- Aumenta el z-index al hacer hover */
 }
 
 .educacion-item strong {
@@ -185,6 +190,23 @@
         padding: 1rem;
     }
 }
+
+/* ESTO ES SOLO PARA HABILIDADES*/
+
+.habilidades-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem; /* menos separación */
+    flex-wrap: nowrap;
+}
+
+.habilidades-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
 /* ESTO ES SOLO PARA CONTACTO*/
 .contacto-redes {
     display: flex;
