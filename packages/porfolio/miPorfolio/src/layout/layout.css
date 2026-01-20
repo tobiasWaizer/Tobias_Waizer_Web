@@ -20,7 +20,7 @@
     flex: 1;
     overflow-y: auto;
     height: 100vh;
-    background: #7a7777;
+    background: rgba(255, 255, 255, 0.91);
     padding: 50px;
     scroll-behavior: smooth;
 }

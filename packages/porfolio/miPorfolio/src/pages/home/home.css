@@ -10,13 +10,74 @@
 
 .home-description {
     font-size: 1.2rem;
-    color: #000000;
+    color: #333;
+    text-align: left;
+
+}
+
+.home-nombre {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 2rem;
+    margin-top: 0;
+    display: block;
+    max-width: 100vw;
+    letter-spacing: 2px;
+    animation: slideFadeIn 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.nombre-tobias {
+    color: #333;
+    display: inline-block;
+    animation: colorPop 1.2s 0.2s both;
+}
+
+.nombre-waizer {
+    color: #1a237e;
+    display: inline-block;
+    animation: colorPop 1.2s 0.5s both;
+}
+
+@keyframes colorPop {
+    0% {
+        filter: brightness(1.5) blur(2px);
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    60% {
+        filter: none;
+        opacity: 1;
+        transform: scale(1.08);
+    }
+    100% {
+        filter: none;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 700px) {
+    .home-nombre {
+        font-size: 2.2rem;
+    }
 }
 
 /* ESTO ES SOLO PARA SOBRE MI*/
 
 .sobre-mi-titulo, .contacto-titulo {
-    color: #048eb9;
+    color: #1a237e;
     font-size: 2.8rem;
     font-weight: bold;
     text-align: left;
@@ -24,7 +85,7 @@
 }
 
 .sobre-mi-subtitulo {
-    color: #048eb9;
+    color: #1a237e;
     font-size: 1.5rem;
     font-weight: bold;
     text-align: left;
@@ -41,6 +102,7 @@
     justify-content: flex-start;
     gap: 2rem;
     max-width: 700px;
+    color: #333
 }
 
 .sobre-mi-texto {
@@ -56,7 +118,7 @@
 }
 
 .cv-btn {
-    background: #1976d2;
+    background: #1a237e;
     color: #fff;
     padding: 0.7rem 1.5rem;
     border-radius: 5px;
@@ -90,7 +152,7 @@
 
 .educacion-item {
     background: #f5f7fa;
-    border-left: 5px solid #1976d2;
+    border-left: 5px solid #1a237e;
     border-radius: 8px;
     padding: 1.5rem 2rem;
     box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
@@ -106,7 +168,7 @@
 
 .educacion-item strong {
     font-size: 1.2rem;
-    color: #1976d2;
+    color: #1a237e;
     display: block;
     margin-bottom: 0.5rem;
 }
@@ -132,17 +194,21 @@
 }
 
 .contacto-link {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 0.8rem;
     color: #333;
     text-decoration: none;
     font-size: 1.1rem;
     transition: color 0.2s;
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    max-width: max-content;
 }
 
+
 .contacto-link:hover {
-    color: #1976d2;
+    color: #1a237e;
 }
 
 .contacto-icono {

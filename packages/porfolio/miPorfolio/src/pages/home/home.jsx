@@ -4,6 +4,7 @@ import { MdEmail } from "react-icons/md";
 import { FaWhatsapp, FaInstagram, FaLinkedin } from "react-icons/fa";
 import MiFoto from "../../assets/miFoto.jpeg";
 import Typewriter from "../../components/typewriter";
+import CarrouselProyectos from "../../components/carrouselProyectos.jsx";
 
 const SobreMi = () => (
     <section id="sobre-mi" className="sobre-mi-section">
@@ -44,11 +45,9 @@ const SobreMi = () => (
 
 
 const Proyectos = () => (
-    <section id="proyectos" style={{ padding: "2rem 0", textAlign: "center" }}>
-        <h2>Sobre mí</h2>
-        <p>
-            ¡Hola! Soy Tobias Waizer. Soy desarrollador y este es mi portafolio. Aquí puedes conocer más sobre mi trabajo y experiencia.
-        </p>
+    <section id="proyectos" className="sobre-mi-section">
+        <h2 className= "contacto-titulo">Proyectos</h2>
+        <CarrouselProyectos/>
     </section>
 )
 
@@ -112,11 +111,14 @@ const Contacto = () => (
 export default function Home() {
     return (
         <div className="home-container">
-            <h1 className="home-title">Bienvenido</h1>
+            <h1 className="home-nombre">
+                <span className="nombre-tobias">Tobias</span> <span className="nombre-waizer">Waizer</span>
+            </h1>
             <p className="home-description">
                 Hola! Soy Tobias Waizer y este es mi porfolio personal, aquí podrás encontrar información sobre mis conocimientos, proyectos y habilidades.
             </p>
             <SobreMi/>
+            <Proyectos/>
             <Educacion/>
             <Contacto/>
         </div>

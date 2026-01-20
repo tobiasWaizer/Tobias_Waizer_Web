@@ -1,10 +1,10 @@
 .typewriter {
     font-size: 1.5rem;
-    color: #1976d2; /* celeste oscuro */
+    color: #1a237e; /* celeste oscuro */
     margin-bottom: 1rem;
     font-family: inherit;
     white-space: pre;
-    border-right: 2px solid #1976d2;
+    border-right: 2px solid #1a237e;
     animation: blink-cursor 0.8s steps(1) infinite;
 }
 
