@@ -6,7 +6,8 @@ import MiFoto from "../../assets/miFoto.jpeg";
 import Typewriter from "../../components/typewriter";
 import CarrouselProyectos from "../../components/carrouselProyectos.jsx";
 import HabilidadButton from "../../components/HabilidadButton";
-
+import GaleriaProyectos from "../../components/galeriaProyectos.jsx";
+import {SiPostgresql} from "react-icons/si";
 
 const SobreMi = () => (
     <section id="sobre-mi" className="sobre-mi-section">
@@ -49,10 +50,11 @@ const SobreMi = () => (
 const Proyectos = () => (
     <section id="proyectos" className="sobre-mi-section">
         <h2 className= "contacto-titulo">Proyectos</h2>
-        <CarrouselProyectos/>
+        <GaleriaProyectos />
     </section>
 )
 
+        /*<CarrouselProyectos/>*/
 const educaciones = [
     {
         institucion: "UTN - Universidad Tecnológica Nacional",
@@ -87,7 +89,16 @@ const Educacion = () => (
 const habilidades = {
     lenguajes: ["JavaScript", "Java", "HTML", "CSS", "SQL"],
     frameworks: ["React.js", "Node.js", "Express", "Spring Boot"],
-    herramientas: ["Git", "Figma", "Postman", "MongoDB", "VS Code"]
+    herramientas: [
+        "Git",
+        "Figma",
+        "Postman",
+        "MongoDB",
+        "VS Code",
+        { nombre: "PostgreSQL", icon: <SiPostgresql /> },
+        { nombre: "SQL Server Management"},
+
+    ]
 };
 
 const Habilidades = () => (
@@ -113,9 +124,13 @@ const Habilidades = () => (
             <div>
                 <h3 className="sobre-mi-subtitulo">SW y Herramientas</h3>
                 <div className="habilidades-lista">
-                    {habilidades.herramientas.map((item, idx) => (
-                        <HabilidadButton key={idx} nombre={item} />
-                    ))}
+                    {habilidades.herramientas.map((item, idx) =>
+                        typeof item === "string" ? (
+                            <HabilidadButton key={idx} nombre={item} />
+                        ) : (
+                            <HabilidadButton key={idx} nombre={item.nombre} icon={item.icon} />
+                        )
+                    )}
                 </div>
             </div>
         </div>

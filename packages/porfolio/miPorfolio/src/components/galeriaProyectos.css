@@ -1,0 +1,70 @@
+.galeria-proyectos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: flex-start;
+    margin-bottom: 3rem;
+}
+
+.proyecto-galeria-card {
+    position: relative;
+    width: 480px;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(30, 64, 175, 0.10);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.proyecto-galeria-card:hover {
+    transform: scale(1.04);
+}
+
+.proyecto-galeria-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s;
+}
+
+.proyecto-galeria-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26, 35, 126, 0.92);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.proyecto-galeria-card:hover .proyecto-galeria-overlay {
+    opacity: 1;
+}
+
+.proyecto-galeria-btn {
+    margin-top: 1.2rem;
+    background: #fff;
+    color: #1a237e;
+    border: 3px solid transparent; /* Borde siempre presente, pero transparente */
+    border-radius: 24px;
+    padding: 0.6rem 1.6rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.proyecto-galeria-btn:hover {
+    background: #1a237e;
+    color: #fff;
+    border: 3px solid #ffffff; /* <-- Borde agregado */
+
+}

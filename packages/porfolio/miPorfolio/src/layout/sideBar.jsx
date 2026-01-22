@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoWaizer from "../assets/logoWaizer.png";
 import "./sideBar.css";
+
+const secciones = [
+    { id: "sobre-mi", label: "Sobre mí" },
+    { id: "proyectos", label: "Proyectos" },
+    { id: "educacion", label: "Educacion" },
+    { id: "habilidades", label: "Habilidades" },
+    { id: "contacto", label: "Contacto" }
+];
 
 const Sidebar = () => (
     <nav className="sidebar">
