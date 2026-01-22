@@ -154,7 +154,7 @@ const Contacto = () => (
                 <FaInstagram size={32} className="contacto-icono" />
                 @tobias_jiw
             </a>
-            <a href="www.linkedin.com/in/tobias-waizer-9b8361180" target="_blank" rel="noopener noreferrer" className="contacto-link" title="LinkedIn">
+            <a href="https://www.linkedin.com/in/tobias-waizer-9b8361180/" target="_blank" rel="noopener noreferrer" className="contacto-link" title="LinkedIn">
                 <FaLinkedin size={32} className="contacto-icono" />
                 tobias-waizer-linkedIn
             </a>
